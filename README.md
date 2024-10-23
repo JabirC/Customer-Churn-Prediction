@@ -32,7 +32,9 @@ End-to-end pipeline for a customer churn prediction model
 
 6. In the secrets.toml store the Groq API key like so:
 
+   ```
    GROQ_API_KEY="REPLACE_WITH_YOUR_KEY"
+   ```
 
 7. Run the app
 
