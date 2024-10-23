@@ -42,7 +42,8 @@ def process_data(customer_dict):
 def get_predictions(data):
     processed_data = process_data(data)
     prediction = model.predict(processed_data)
-    return prediction
+    probability = model.predict_proba(processed_data)
+    return prediction, probability
 
 
 app = Flask(__name__)
@@ -51,10 +52,11 @@ app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
-    prediction = get_predictions(data)
+    prediction, probability = get_predictions(data)
 
     return {
-        "Prediction" :  prediction.tolist()
+        "Prediction" :  prediction.tolist(),
+        "Probability" : probability.tolist()
     }
 
 if __name__ == '__main__':
